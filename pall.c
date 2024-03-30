@@ -1,26 +1,28 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "monty.h" 
+#include "monty.h"
 
 /**
- * pall - Prints all the values on the stack.
- * @stack: Pointer to the head of the stack.
- * @line_number: Line number being interpreted from the Monty file.
+ * print_stack - Prints the elements of the stack
+ * @stack: Pointer to the head of the stack
+ * @line_number: Line number being interpreted from the Monty file
+ * Return: No return value
  */
-void pall(stack_t **stack, unsigned int line_number)
+void print_stack(stack_t **stack, unsigned int line_number)
 {
-    // Ensure stack is valid
-    if (stack == NULL)
-    {
-        fprintf(stderr, "L%u: Error: stack not initialized\n", line_number);
-        exit(EXIT_FAILURE);
-    }
+    stack_t *current_node;
+    (void)line_number; // Unused parameter
 
-    // Traverse the stack and print its contents
-    stack_t *current = *stack;
-    while (current != NULL)
+    // Set current_node to the head of the stack
+    current_node = *stack;
+
+    // If stack is empty, return
+    if (current_node == NULL)
+        return;
+
+    // Traverse the stack and print each element
+    while (current_node != NULL)
     {
-        printf("%d\n", current->n);
-        current = current->next;
+        printf("%d\n", current_node->n);
+        current_node = current_node->next;
     }
 }
+

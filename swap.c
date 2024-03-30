@@ -1,23 +1,38 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "monty.h" 
+#include "monty.h"
 
 /**
- * swap - Swaps the top two elements of the stack.
- * @stack: Double pointer to the head of the stack.
+ * swap_elements - Swaps the top two elements of the stack.
+ * @stack: Pointer to the head of the stack.
  * @line_number: Line number being interpreted from the Monty file.
+ * Return: No return value.
  */
-void swap(stack_t **stack, unsigned int line_number)
+void swap_elements(stack_t **stack, unsigned int line_number)
 {
-    // Ensure stack is valid and contains at least two elements
-    if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+    stack_t *current_node;
+    int stack_length = 0, temp;
+
+    // Calculate the length of the stack
+    current_node = *stack;
+    while (current_node)
     {
-        fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+        current_node = current_node->next;
+        stack_length++;
+    }
+
+    // Check if the stack has less than two elements
+    if (stack_length < 2)
+    {
+        fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+        fclose(bus.file);
+        free(bus.content);
+        free_stack(*stack);
         exit(EXIT_FAILURE);
     }
 
-    // Swap the values of the top two elements
-    int temp = (*stack)->n;
-    (*stack)->n = (*stack)->next->n;
-    (*stack)->next->n = temp;
+    // Swap the top two elements of the stack
+    current_node = *stack;
+    temp = current_node->n;
+    current_node->n = current_node->next->n;
+    current_node->next->n = temp;
 }
+

@@ -1,34 +1,56 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "monty.h"
 
+/* Global variable */
+bus_t bus = {NULL, NULL, NULL, 0};
+
+/**
+ * main - Monty code interpreter
+ * @argc: Number of arguments
+ * @argv: Array of arguments
+ * Return: 0 on success, or EXIT_FAILURE on failure
+ */
 int main(int argc, char *argv[])
 {
+    char *content;
+    FILE *file;
+    size_t size = 0;
+    ssize_t read_line = 1;
+    stack_t *stack = NULL;
+    unsigned int counter = 0;
+
+    /* Validate the number of arguments */
     if (argc != 2)
     {
         fprintf(stderr, "USAGE: monty file\n");
-        return EXIT_FAILURE;
+        exit(EXIT_FAILURE);
     }
 
-    FILE *file = fopen(argv[1], "r");
-    if (file == NULL)
+    /* Open the Monty file */
+    file = fopen(argv[1], "r");
+    bus.file = file;
+    if (!file)
     {
         fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-        return EXIT_FAILURE;
+        exit(EXIT_FAILURE);
     }
 
-    stack_t *stack = NULL;
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read;
-
-    while ((read = getline(&line, &len, file)) != -1)
+    /* Read lines from the file and execute Monty commands */
+    while (read_line > 0)
     {
-        printf("Read line: %s", line); 
+        content = NULL;
+        read_line = getline(&content, &size, file);
+        bus.content = content;
+        counter++;
+        if (read_line > 0)
+        {
+            execute(content, &stack, counter, file);
+        }
+        free(content);
     }
 
-    free(line);
+    /* Free the stack and close the file */
+    free_stack(stack);
     fclose(file);
-    return EXIT_SUCCESS;
+
+    return (0);
 }
-i
