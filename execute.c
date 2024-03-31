@@ -1,3 +1,4 @@
+#include <string.h>
 #include "monty.h"
 
 /**
@@ -8,17 +9,19 @@
  * @file: pointer to monty file
  * Return: no return
  */
-void execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
+int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
 {
     instruction_t opst[] = {
-        {"push", perform_push}, {"pall", print_stack}, {"pint", perform_pint},
+        {"pint", perform_pint},
         {"pop", perform_pop},
-        {"swap", swap_elements},
         {"add", perform_addition},
         {"nop", perform_no_operation},
-        // Add more opcodes here as needed
+        {"swap", swap_elements},
+        {"pall", print_stack},
+        {"push", push_node},
         {NULL, NULL}
     };
+    
     unsigned int i = 0;
     char *op;
 

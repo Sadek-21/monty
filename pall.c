@@ -9,16 +9,16 @@
 void print_stack(stack_t **stack, unsigned int line_number)
 {
     stack_t *current_node;
-    (void)line_number; // Unused parameter
+    (void)line_number; /* Unused parameter*/
 
-    // Set current_node to the head of the stack
+    /* Set current_node to the head of the stack*/
     current_node = *stack;
 
-    // If stack is empty, return
+    /* If stack is empty, return*/
     if (current_node == NULL)
         return;
 
-    // Traverse the stack and print each element
+    /* Traverse the stack and print each element*/
     while (current_node != NULL)
     {
         printf("%d\n", current_node->n);

@@ -4,19 +4,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Struct for Monty interpreter */
-typedef struct monty_interpreter {
-    char *argument;
-    int lifo;
-    FILE *file;
-    char *content;
-} monty_interpreter_t;
-
-/* Struct for stack nodes */
-typedef struct stack_node {
+/* Define the stack structure */
+typedef struct stack_s
+{
     int n;
-    struct stack_node *next;
+    struct stack_s *prev;
+    struct stack_s *next;
 } stack_t;
+
+/* Define the instruction structure */
+typedef struct instruction_s
+{
+    char *opcode;
+    void (*f)(stack_t **stack, unsigned int line_number);
+} instruction_t;
 
 /* Function prototypes */
 void perform_pint(stack_t **stack, unsigned int line_number);
@@ -26,9 +27,8 @@ void perform_no_operation(stack_t **stack, unsigned int line_number);
 void swap_elements(stack_t **stack, unsigned int line_number);
 void print_stack(stack_t **stack, unsigned int line_number);
 void push_node(stack_t **stack, unsigned int line_number);
-void free_stack(stack_t *head);
-/* Function to free the stack */
+int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
 void free_stack(stack_t *stack);
-
+extern bus_t bus;
 #endif /* MONTY_H */
 

@@ -11,7 +11,7 @@ void swap_elements(stack_t **stack, unsigned int line_number)
     stack_t *current_node;
     int stack_length = 0, temp;
 
-    // Calculate the length of the stack
+    /* Calculate the length of the stack*/
     current_node = *stack;
     while (current_node)
     {
@@ -19,7 +19,7 @@ void swap_elements(stack_t **stack, unsigned int line_number)
         stack_length++;
     }
 
-    // Check if the stack has less than two elements
+    /* Check if the stack has less than two elements*/
     if (stack_length < 2)
     {
         fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
@@ -29,7 +29,7 @@ void swap_elements(stack_t **stack, unsigned int line_number)
         exit(EXIT_FAILURE);
     }
 
-    // Swap the top two elements of the stack
+    /* Swap the top two elements of the stack*/
     current_node = *stack;
     temp = current_node->n;
     current_node->n = current_node->next->n;

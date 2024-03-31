@@ -8,8 +8,8 @@
  */
 void perform_no_operation(stack_t **stack, unsigned int line_number)
 {
-    // Suppress unused parameter warnings
+    /* Suppress unused parameter warnings*/
     (void)stack;
     (void)line_number;
-    // Perform no operation
+   
 }
