@@ -1,15 +1,12 @@
 #include "monty.h"
-
 /**
- * perform_no_operation - Does nothing.
- * @stack: Pointer to the head of the stack.
- * @line_number: Line number being interpreted from the Monty file.
- * Return: No return value.
+  *f_nop- nothing
+  *@head: stack head
+  *@counter: line_number
+  *Return: no return
  */
-void perform_no_operation(stack_t **stack, unsigned int line_number)
+void f_nop(stack_t **head, unsigned int counter)
 {
-    /* Suppress unused parameter warnings*/
-    (void)stack;
-    (void)line_number;
-   
+	(void) counter;
+	(void) head;
 }
