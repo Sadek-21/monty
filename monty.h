@@ -4,6 +4,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct interpreter_s
+{
+    char *argument;
+    FILE *file;
+    char *content;
+    int lifo; 
+} interpreter_t;
+
 /* Define the stack structure */
 typedef struct stack_s
 {
@@ -11,6 +19,12 @@ typedef struct stack_s
     struct stack_s *prev;
     struct stack_s *next;
 } stack_t;
+
+typedef struct bus_s
+{
+    FILE *file;
+    char *content;
+} bus_t;
 
 /* Define the instruction structure */
 typedef struct instruction_s
@@ -25,6 +39,8 @@ void perform_pop(stack_t **stack, unsigned int line_number);
 void perform_addition(stack_t **stack, unsigned int line_number);
 void perform_no_operation(stack_t **stack, unsigned int line_number);
 void swap_elements(stack_t **stack, unsigned int line_number);
+void add_node_to_stack(stack_t **stack, int value);
+void add_node_to_queue(stack_t **stack, int value);
 void print_stack(stack_t **stack, unsigned int line_number);
 void push_node(stack_t **stack, unsigned int line_number);
 int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);

@@ -1,11 +1,15 @@
 #include "monty.h"
 
+interpreter_t interpreter;
 /**
  * push_node - Adds a new node to the stack
  * @stack: Pointer to the head of the stack
  * @line_number: Line number being interpreted from the Monty file
  * Return: No return value
  */
+void add_node_to_stack(stack_t **stack, int value);
+void add_node_to_queue(stack_t **stack, int value);
+
 void push_node(stack_t **stack, unsigned int line_number)
 {
     int value, index = 0, invalid_flag = 0;
@@ -53,4 +57,3 @@ void push_node(stack_t **stack, unsigned int line_number)
     else
         add_node_to_queue(stack, value);
 }
-

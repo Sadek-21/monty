@@ -27,14 +27,14 @@ int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
 
     op = strtok(content, " \n\t");
     if (op && op[0] == '#')
-        return;
+        return 0;
 
     while (opst[i].opcode && op)
     {
         if (strcmp(op, opst[i].opcode) == 0)
         {
             opst[i].f(stack, counter);
-            return;
+            return 0;
         }
         i++;
     }
@@ -47,4 +47,5 @@ int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
         free_stack(*stack);
         exit(EXIT_FAILURE);
     }
+    return -1;
 }
