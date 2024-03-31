@@ -8,8 +8,7 @@ interpreter_t interpreter;
  * Return: No return value
  */
 void add_node_to_stack(stack_t **stack, int value);
-void add_node_to_queue(stack_t **stack, int value);
-
+stack_t *add_node_to_queue(stack_t **stack, int value);
 void push_node(stack_t **stack, unsigned int line_number)
 {
     int value, index = 0, invalid_flag = 0;

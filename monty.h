@@ -20,10 +20,14 @@ typedef struct stack_s
     struct stack_s *next;
 } stack_t;
 
-typedef struct bus_s
+typedef struct bus
 {
-    FILE *file;
     char *content;
+    FILE *file;
+    int mode;
+    char *opcode;
+    int val;
+    int line_number;
 } bus_t;
 
 /* Define the instruction structure */
@@ -40,7 +44,7 @@ void perform_addition(stack_t **stack, unsigned int line_number);
 void perform_no_operation(stack_t **stack, unsigned int line_number);
 void swap_elements(stack_t **stack, unsigned int line_number);
 void add_node_to_stack(stack_t **stack, int value);
-void add_node_to_queue(stack_t **stack, int value);
+stack_t *add_node_to_queue(stack_t **stack, int value);
 void print_stack(stack_t **stack, unsigned int line_number);
 void push_node(stack_t **stack, unsigned int line_number);
 int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);

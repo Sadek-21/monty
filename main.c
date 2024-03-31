@@ -9,6 +9,8 @@
  * @argv: Array of arguments
  * Return: 0 on success, or EXIT_FAILURE on failure
  */
+bus_t bus;
+
 int main(int argc, char *argv[])
 {
     char *content;
