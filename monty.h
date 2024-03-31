@@ -26,7 +26,7 @@ void perform_no_operation(stack_t **stack, unsigned int line_number);
 void swap_elements(stack_t **stack, unsigned int line_number);
 void print_stack(stack_t **stack, unsigned int line_number);
 void push_node(stack_t **stack, unsigned int line_number);
-
+void free_stack(stack_t *head);
 /* Function to free the stack */
 void free_stack(stack_t *stack);
 
